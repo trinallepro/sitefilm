@@ -5,84 +5,99 @@
     <title>Liste des films</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
+    <style>
+        body { padding: 20px; }
+        #filmList { margin-top: 20px; }
+        #recommendations { margin-top: 20px; }
+    </style>
 </head>
-<script>
-    function personalize() {
-        var genre = document.getElementById("genre").value;
-        var recommendations = "";
-
-        if (genre === "Thriller") {
-            recommendations = "<ul>" +
-                "<li><a href='pages/inception.html'>Inception</a></li>" +
-                "<li><a href='pages/se7en.html'>Se7en</a></li>" +
-                "<li><a href='pages/gone_girl.html'>Gone Girl</a></li>" +
-                "</ul>";
-        } else if (genre === "Comédie") {
-            recommendations = "<ul>" +
-                "<li><a href='pages/the_hangover.html'>The Hangover</a></li>" +
-                "<li><a href='pages/superbad.html'>Superbad</a></li>" +
-                "<li><a href='pages/step_brothers.html'>Step Brothers</a></li>" +
-                "</ul>";
-        } else if (genre === "Fantastique") {
-            recommendations = "<ul>" +
-                "<li><a href='pages/harry_potter.html'>Harry Potter</a></li>" +
-                "<li><a href='pages/lotr.html'>The Lord of the Rings</a></li>" +
-                "<li><a href='pages/narnia.html'>The Chronicles of Narnia</a></li>" +
-                "</ul>";
-        } else if (genre === "Sciences Fiction") {
-            recommendations = "<ul>" +
-                "<li><a href=\"films/starwars4.html\">Star Wars IV</a></li>" +
-                "<li><a href=\"films/starwars5.html\">Star Wars V</a></li>" +
-                "<li><a href=\"films/starwars6.html\">Star Wars VI</a></li>" +
-                "<li><a href=\"films/starwars7.html\">Star Wars VII</a></li>" +
-                "<li><a href=\"films/starwars8.html\">Star Wars VIII</a></li>" +
-                "<li><a href=\"films/starwars9.html\">Star Wars IX</a></li>" +
-                "<li><a href=\"films/readyplayerone.html\">Ready Player One</a></li>" +
-                "</ul>";
-        } else {
-            recommendations = "Veuillez sélectionner un genre pour voir nos recommandations.";
-        }
-
-        document.getElementById("recommendations").innerHTML = recommendations;
-    }
-</script>
+<body>
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="../index.html"><img src="../images/logo_freeflix.png"></a>
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="../index.html">Accueil</a>
-                <a class="nav-item nav-link" href="listeFilms.html">Liste des films</a>
-            </div>
+        <a class="navbar-brand" href="../index.html"><img src="../images/logo_freeflix.png" alt="Freeflix Logo"></a>
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="../index.html">Accueil</a>
+            <a class="nav-item nav-link" href="listeFilms.html">Liste des films</a>
+        </div>
     </nav>
 </header>
-<body>
-<br>
-<h3>Personnalisez vos recommandations</h3>
-<form onsubmit="event.preventDefault(); personalize();">
-    <label for="genre">Choisissez votre genre préféré :</label>
-    <select id="genre">
-        <option value="">Sélectionnez un genre</option>
-        <option value="Thriller">Thriller</option>
-        <option value="Comédie">Comédie</option>
-        <option value="Fantastique">Fantastique</option>
-        <option value="Sciences Fiction">Sciences Fiction</option>
-    </select>
-    <button type="submit">Voir les recommandations</button>
-</form>
-<div id="recommendations"></div>
-<div class="list-group">
-    <a href="#" class="list-group-item list-group-item-action active">Liste des films
-    </a>
-    <a href="films/drive.html" class="list-group-item list-group-item-action">Drive</a>
-    <a href="films/le_discours_dun_roi.html" class="list-group-item list-group-item-action">Le discours d'un roi</a>
-    <a href="films/starwars4.html" class="list-group-item list-group-item-action">Star wars IV</a>
-    <a href="films/starwars5.html" class="list-group-item list-group-item-action">Star wars V</a>
-    <a href="films/starwars6.html" class="list-group-item list-group-item-action">Star wars VI</a>
-    <a href="films/starwars7.html" class="list-group-item list-group-item-action">Star wars VII</a>
-    <a href="films/starwars8.html" class="list-group-item list-group-item-action">Star wars VIII</a>
-    <a href="films/starwars9.html" class="list-group-item list-group-item-action">Star wars IX</a>
-    <a href="films/readyplayerone.html" class="list-group-item list-group-item-action">Ready Player One</a>
-</div>
 
+<main>
+    <h3>Personnalisez vos recommandations</h3>
+    <form id="recommendationForm">
+        <label for="genre">Choisissez votre genre préféré :</label>
+        <select id="genre" onchange="updateRecommendations()" required>
+            <option value="">Sélectionnez un genre</option>
+            <option value="Thriller">Thriller</option>
+            <option value="Comédie">Comédie</option>
+            <option value="Fantastique">Fantastique</option>
+            <option value="Science Fiction">Science Fiction</option>
+        </select>
+    </form>
+    <div id="recommendations">Veuillez sélectionner un genre pour voir nos recommandations.</div>
+
+    <div class="list-group mt-3" id="filmList">
+        <a href="#" class="list-group-item list-group-item-action active">Liste des films</a>
+    </div>
+</main>
+
+<script>
+    const films = {
+        "Thriller": [
+            { title: "Inception", link: "/pages/films/inception.html" },
+            { title: "Se7en", link: "/pages/films/se7en.html" },
+            { title: "Gone Girl", link: "films/gone_girl.html" }
+        ],
+        "Comédie": [
+            { title: "The Hangover", link: "/pages/films/the_hangover.html" },
+            { title: "Superbad", link: "/pages/films/superbad.html" },
+            { title: "Step Brothers", link: "/pages/films/step_brothers.html" }
+        ],
+        "Fantastique": [
+            { title: "Harry Potter", link: "/pages/films/harry_potter.html" },
+            { title: "The Lord of the Rings", link: "pages/lotr.html" },
+            { title: "The Chronicles of Narnia", link: "pages/narnia.html" }
+        ],
+        "Science Fiction": [
+            { title: "Star Wars IV", link: "../pages/films/starwars4.html" },
+            { title: "Star Wars V", link: "films/starwars5.html" },
+            { title: "Star Wars VI", link: "films/starwars6.html" },
+            { title: "Star Wars VII", link: "films/starwars7.html" },
+            { title: "Star Wars VIII", link: "films/starwars8.html" },
+            { title: "Star Wars IX", link: "films/starwars9.html" },
+            { title: "Ready Player One", link: "films/readyplayerone.html" }
+        ]
+    };
+
+    const allFilms = [
+        { title: "Drive", link: "films/drive.html" },
+        { title: "Le discours d'un roi", link: "films/le_discours_dun_roi.html" },
+        { title: "Star Wars IV", link: "films/starwars4.html" },
+        { title: "Star Wars V", link: "films/starwars5.html" },
+        { title: "Star Wars VI", link: "films/starwars6.html" },
+        { title: "Star Wars VII", link: "films/starwars7.html" },
+        { title: "Star Wars VIII", link: "films/starwars8.html" },
+        { title: "Star Wars IX", link: "films/starwars9.html" },
+        { title: "Ready Player One", link: "films/readyplayerone.html" }
+    ];
+
+    function updateRecommendations() {
+        var genre = document.getElementById("genre").value;
+        var recommendationList = films[genre] || [];
+        var recommendationHtml = recommendationList.length ? "<ul>" + recommendationList.map(function(film) {
+            return "<li><a href='" + film.link + "'>" + film.title + "</a></li>";
+        }).join('') + "</ul>" : "Veuillez sélectionner un genre pour voir nos recommandations.";
+        document.getElementById("recommendations").innerHTML = recommendationHtml;
+    }
+
+    function renderFilmList() {
+        var filmListHtml = allFilms.map(function(film) {
+            return "<a href='" + film.link + "' class='list-group-item list-group-item-action'>" + film.title + "</a>";
+        }).join('');
+        document.getElementById("filmList").innerHTML += filmListHtml;
+    }
+
+    renderFilmList();
+</script>
 </body>
 </html>
