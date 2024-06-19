@@ -15,9 +15,48 @@ body {
     padding-right: 10%;
     text-align: center;
 }
-.dark-mode {
-    background-color: black;
-    color: white;
+body {
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+    padding: 20px;
 }
+
+nav {
+    background-color: #333;
+    padding: 10px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+#recommendationForm {
+    margin-bottom: 20px;
+}
+
+#recommendations ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#recommendations li {
+    margin-bottom: 10px;
+}
+
+#recommendations a {
+    color: #333;
+    text-decoration: none;
+}
+
+#recommendations a:hover {
+    text-decoration: underline;
+}
+
 
 
