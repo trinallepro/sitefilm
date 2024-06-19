@@ -6,6 +6,46 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
 </head>
+<script>
+    function personalize() {
+        var genre = document.getElementById("genre").value;
+        var recommendations = "";
+
+        if (genre === "Thriller") {
+            recommendations = "<ul>" +
+                "<li><a href='pages/inception.html'>Inception</a></li>" +
+                "<li><a href='pages/se7en.html'>Se7en</a></li>" +
+                "<li><a href='pages/gone_girl.html'>Gone Girl</a></li>" +
+                "</ul>";
+        } else if (genre === "Comédie") {
+            recommendations = "<ul>" +
+                "<li><a href='pages/the_hangover.html'>The Hangover</a></li>" +
+                "<li><a href='pages/superbad.html'>Superbad</a></li>" +
+                "<li><a href='pages/step_brothers.html'>Step Brothers</a></li>" +
+                "</ul>";
+        } else if (genre === "Fantastique") {
+            recommendations = "<ul>" +
+                "<li><a href='pages/harry_potter.html'>Harry Potter</a></li>" +
+                "<li><a href='pages/lotr.html'>The Lord of the Rings</a></li>" +
+                "<li><a href='pages/narnia.html'>The Chronicles of Narnia</a></li>" +
+                "</ul>";
+        } else if (genre === "Sciences Fiction") {
+            recommendations = "<ul>" +
+                "<li><a href=\"films/starwars4.html\">Star Wars IV</a></li>" +
+                "<li><a href=\"films/starwars5.html\">Star Wars V</a></li>" +
+                "<li><a href=\"films/starwars6.html\">Star Wars VI</a></li>" +
+                "<li><a href=\"films/starwars7.html\">Star Wars VII</a></li>" +
+                "<li><a href=\"films/starwars8.html\">Star Wars VIII</a></li>" +
+                "<li><a href=\"films/starwars9.html\">Star Wars IX</a></li>" +
+                "<li><a href=\"films/readyplayerone.html\">Ready Player One</a></li>" +
+                "</ul>";
+        } else {
+            recommendations = "Veuillez sélectionner un genre pour voir nos recommandations.";
+        }
+
+        document.getElementById("recommendations").innerHTML = recommendations;
+    }
+</script>
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="../index.html"><img src="../images/logo_freeflix.png"></a>
@@ -17,12 +57,25 @@
 </header>
 <body>
 <br>
+<h3>Personnalisez vos recommandations</h3>
+<form onsubmit="event.preventDefault(); personalize();">
+    <label for="genre">Choisissez votre genre préféré :</label>
+    <select id="genre">
+        <option value="">Sélectionnez un genre</option>
+        <option value="Thriller">Thriller</option>
+        <option value="Comédie">Comédie</option>
+        <option value="Fantastique">Fantastique</option>
+        <option value="Sciences Fiction">Sciences Fiction</option>
+    </select>
+    <button type="submit">Voir les recommandations</button>
+</form>
+<div id="recommendations"></div>
 <div class="list-group">
     <a href="#" class="list-group-item list-group-item-action active">Liste des films
     </a>
     <a href="films/drive.html" class="list-group-item list-group-item-action">Drive</a>
     <a href="films/le_discours_dun_roi.html" class="list-group-item list-group-item-action">Le discours d'un roi</a>
-    <a href="films/starwars4.html" class="list-group-item list-group-item-action">Star Wars IV</a>
+    <a href="films/starwars4.html" class="list-group-item list-group-item-action">Star wars IV</a>
     <a href="films/starwars5.html" class="list-group-item list-group-item-action">Star wars V</a>
     <a href="films/starwars6.html" class="list-group-item list-group-item-action">Star wars VI</a>
     <a href="films/starwars7.html" class="list-group-item list-group-item-action">Star wars VII</a>
