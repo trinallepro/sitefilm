@@ -5,11 +5,6 @@
     <title>Liste des films</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/bootstrap.css">
-    <style>
-        body { padding: 20px; }
-        #filmList { margin-top: 20px; }
-        #recommendations { margin-top: 20px; }
-    </style>
 </head>
 <body>
 <header>
@@ -21,9 +16,10 @@
         </div>
     </nav>
 </header>
-
+<br><br><br>
 <main>
     <h3>Personnalisez vos recommandations</h3>
+    <br>
     <form id="recommendationForm">
         <label for="genre">Choisissez votre genre préféré :</label>
         <select id="genre" onchange="updateRecommendations()" required>
@@ -35,51 +31,35 @@
         </select>
     </form>
     <div id="recommendations">Veuillez sélectionner un genre pour voir nos recommandations.</div>
-
-    <div class="list-group mt-3" id="filmList">
-        <a href="#" class="list-group-item list-group-item-action active">Liste des films</a>
-    </div>
 </main>
 
 <script>
     const films = {
         "Thriller": [
-            { title: "Inception", link: "/pages/films/inception.html" },
-            { title: "Se7en", link: "/pages/films/se7en.html" },
-            { title: "Gone Girl", link: "films/gone_girl.html" }
+            { title: "Inception", link: "../pages/films/inception.html" },
+            { title: "Se7en", link: "../pages/films/se7en.html" },
+            { title: "Gone Girl", link: "../pages/films/gone_girl.html" }
         ],
         "Comédie": [
-            { title: "The Hangover", link: "/pages/films/the_hangover.html" },
-            { title: "Superbad", link: "/pages/films/superbad.html" },
-            { title: "Step Brothers", link: "/pages/films/step_brothers.html" }
+            { title: "The Hangover", link: "../pages/films/the_hangover.html" },
+            { title: "Superbad", link: "../pages/films/superbad.html" },
+            { title: "Step Brothers", link: "../pages/films/step_brothers.html" }
         ],
         "Fantastique": [
-            { title: "Harry Potter", link: "/pages/films/harry_potter.html" },
-            { title: "The Lord of the Rings", link: "pages/lotr.html" },
-            { title: "The Chronicles of Narnia", link: "pages/narnia.html" }
+            { title: "Harry Potter", link: "../pages/films/harry_potter.html" },
+            { title: "The Lord of the Rings", link: "../pages/films/lotr.html" },
+            { title: "The Chronicles of Narnia", link: "../pages/films/narnia.html" }
         ],
         "Science Fiction": [
             { title: "Star Wars IV", link: "../pages/films/starwars4.html" },
-            { title: "Star Wars V", link: "films/starwars5.html" },
-            { title: "Star Wars VI", link: "films/starwars6.html" },
-            { title: "Star Wars VII", link: "films/starwars7.html" },
-            { title: "Star Wars VIII", link: "films/starwars8.html" },
-            { title: "Star Wars IX", link: "films/starwars9.html" },
-            { title: "Ready Player One", link: "films/readyplayerone.html" }
+            { title: "Star Wars V", link: "../pages/films/starwars5.html" },
+            { title: "Star Wars VI", link: "../pages/films/starwars6.html" },
+            { title: "Star Wars VII", link: "../pages/films/starwars7.html" },
+            { title: "Star Wars VIII", link: "../pages/films/starwars8.html" },
+            { title: "Star Wars IX", link: "../pages/films/starwars9.html" },
+            { title: "Ready Player One", link: "../pages/films/readyplayerone.html" }
         ]
     };
-
-    const allFilms = [
-        { title: "Drive", link: "films/drive.html" },
-        { title: "Le discours d'un roi", link: "films/le_discours_dun_roi.html" },
-        { title: "Star Wars IV", link: "films/starwars4.html" },
-        { title: "Star Wars V", link: "films/starwars5.html" },
-        { title: "Star Wars VI", link: "films/starwars6.html" },
-        { title: "Star Wars VII", link: "films/starwars7.html" },
-        { title: "Star Wars VIII", link: "films/starwars8.html" },
-        { title: "Star Wars IX", link: "films/starwars9.html" },
-        { title: "Ready Player One", link: "films/readyplayerone.html" }
-    ];
 
     function updateRecommendations() {
         var genre = document.getElementById("genre").value;
@@ -90,14 +70,6 @@
         document.getElementById("recommendations").innerHTML = recommendationHtml;
     }
 
-    function renderFilmList() {
-        var filmListHtml = allFilms.map(function(film) {
-            return "<a href='" + film.link + "' class='list-group-item list-group-item-action'>" + film.title + "</a>";
-        }).join('');
-        document.getElementById("filmList").innerHTML += filmListHtml;
-    }
-
-    renderFilmList();
 </script>
 </body>
 </html>
